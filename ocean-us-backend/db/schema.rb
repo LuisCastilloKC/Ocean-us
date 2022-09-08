@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_08_035152) do
+ActiveRecord::Schema.define(version: 2022_09_08_035618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,24 @@ ActiveRecord::Schema.define(version: 2022_09_08_035152) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "address"
+    t.string "zipcode"
+    t.string "image"
+    t.integer "like"
+    t.datetime "date"
+    t.string "eventDescription"
+    t.string "title"
+    t.string "longitude"
+    t.string "latitude"
+    t.bigint "user_id", null: false
+    t.bigint "city_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_events_on_city_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -56,6 +74,8 @@ ActiveRecord::Schema.define(version: 2022_09_08_035152) do
   end
 
   add_foreign_key "cities", "states"
+  add_foreign_key "events", "cities"
+  add_foreign_key "events", "users"
   add_foreign_key "userroles", "roles"
   add_foreign_key "userroles", "users"
 end
