@@ -14,4 +14,10 @@ class StatesController < ApplicationController
         end
     end
 
+    private
+
+    def state_params
+        params.require(:state).permit(:state, :initial)
+    end
+
 end
