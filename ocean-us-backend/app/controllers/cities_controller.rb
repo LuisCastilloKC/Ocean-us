@@ -5,4 +5,13 @@ class CitiesController < ApplicationController
         render json: cities
     end
 
+    def create
+        city = City.create(city_params)
+        if city.save
+            render json: city, status: :created
+        else
+            render json: city.errors, status: :unprocessable_entity
+        end
+    end
+
 end
