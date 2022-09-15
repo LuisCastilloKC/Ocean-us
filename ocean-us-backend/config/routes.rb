@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   resources :states, only: [:index, :create]
   resources :cities, only: [:index, :create]
-  resources :events, only: [:index, :create]
+  resources :events, only: [:index, :create, :show, :update, :destroy]
 end
