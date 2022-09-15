@@ -1,8 +1,15 @@
 class EventsController < ApplicationController
+    before_action :set_event, only: [:show, :update, :destroy]
+    before_action :authorized
 
     def index
         events = Event.all
         render json: events
+    end
+
+    def show
+        event = Event.find(params[:id])
+        render json: event
     end
 
     def create
