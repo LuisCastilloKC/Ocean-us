@@ -2,9 +2,9 @@ class EventsController < ApplicationController
     before_action :set_event, only: [:show, :update, :destroy]
     before_action :authorized
 
-    # Display all Events
+    # Display all Events of a user only
     def index
-        events = Event.all
+        events = Event.where user: user.id
         render json: events
     end
     # display single Event by one id 
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
         event = Event.create(event_params)
         #  event.user = user.id - Attach a user to every event created. 
         # This happen because in application controller current_user method look for a user.id
-        event.user = user.id
+        event.user = user
         if event.save
             render json: event, status: :created
         else
