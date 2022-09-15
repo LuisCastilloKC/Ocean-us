@@ -27,6 +27,13 @@ class EventsController < ApplicationController
             render json: event
         else
             render json: event.errors, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        event = Event.find(params[:id])
+        event.destroy
+        render json: event
     end
 
     private
