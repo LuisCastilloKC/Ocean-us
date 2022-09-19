@@ -3,7 +3,7 @@
 function App() {
   return (
     <div className="App">
-      <h>Welcome Ocean US</h>
+      <h1>Welcome Ocean US</h1>
     </div>
   );
 }
