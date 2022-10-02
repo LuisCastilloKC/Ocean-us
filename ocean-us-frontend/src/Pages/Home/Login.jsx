@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -11,9 +11,14 @@ const initialState = {
 
 const Login = () => {
   const [formValue, setFormValue] = useState(initialState);
+  const {loading, error } = useSelector((state) => ({ ...state.auth }))
   const { email, password } = formValue;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    error && toast.error(error)
+  }, [error])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,15 +73,15 @@ const Login = () => {
               type="password"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
             >
+                {loading &&}
               Login
             </button>
-            <a
-              href="/"
+            <Link to="/"
               className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             >
               {" "}
               Don't have an account? Register
-            </a>
+            </Link>
           </div>
         </form>
       </div>

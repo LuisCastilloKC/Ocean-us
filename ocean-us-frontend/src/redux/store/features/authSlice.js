@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api"
 
-export const login = createAsyncThunk("auth/login", async({formValue, navigate, toast}) => {
+export const login = createAsyncThunk("auth/login", async({formValue, navigate, toast}, {rejectWithValue}) => {
   try {
     const response = await api.signIn(formValue);
     toast.success("Login Successfull");
@@ -9,7 +9,7 @@ export const login = createAsyncThunk("auth/login", async({formValue, navigate, 
     ///response.data create 3 promise lifecicle (pending, fulfilled, and rejected)
     return response.data
   } catch (error) {
-    console.log(error)
+    return rejectWithValue(error.response.data)
   }
 })
 
