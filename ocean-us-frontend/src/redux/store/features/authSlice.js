@@ -45,6 +45,18 @@ const authSlice = createSlice({
       state.loading = false 
       state.error = action.payload.message
     },
+    [signup.pending]: (state, action) => {
+      state.loading = true
+    },
+    [signup.fulfilled]: (state, action) => {
+      state.loading = false
+      localStorage.setItem("profile", JSON.stringify({...action.payload}))
+      state.user = action.payload
+    },
+    [signup.rejected]: (state, action) => {
+      state.loading = false 
+      state.error = action.payload.message
+    },
   }
 });
 
