@@ -13,6 +13,18 @@ export const login = createAsyncThunk("auth/login", async({formValue, navigate, 
   }
 })
 
+export const signup = createAsyncThunk("auth/signup", async({formValue, navigate, toast}, {rejectWithValue}) => {
+  try {
+    const response = await api.signUp(formValue);
+    toast.success("Sign up Successfull");
+    navigate("/")
+    ///response.data create 3 promise lifecicle (pending, fulfilled, and rejected)
+    return response.data
+  } catch (error) {
+    return rejectWithValue(error.response.data)
+  }
+})
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
