@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
   post "/login", to: "users#login"
   post "/signup", to: "users#create"
-  get "/auto_login", to: "users#auto_login"
+ 
 
   resources :states, only: [:index, :create]
   resources :cities, only: [:index, :create]
