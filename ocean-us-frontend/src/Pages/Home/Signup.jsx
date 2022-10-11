@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { signup } from "../../redux/store/features/authSlice";
 
 const initialState = {
   firstName: "",
@@ -23,6 +24,9 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (email && password && firstName && lastName){
+        dispatch(signup({ formValue, navigate, toast}))
+    }
   };
 
   const onInputChange = (e) => {
@@ -50,6 +54,9 @@ const Signup = () => {
               value={firstName}
               onChange={onInputChange}
               autoComplete="off"
+              required
+              invalid
+              validation="Please provide first name"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -63,6 +70,9 @@ const Signup = () => {
               value={lastName}
               onChange={onInputChange}
               autoComplete="off"
+              required
+              invalid
+              validation="Please provide last name"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -76,6 +86,9 @@ const Signup = () => {
               name="email"
               onChange={onInputChange}
               autoComplete="off"
+              required
+              invalid
+              validation="Please provide email"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -89,6 +102,9 @@ const Signup = () => {
               value={password}
               onChange={onInputChange}
               autoComplete="off"
+              required
+              invalid
+              validation="Please provide password"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -100,7 +116,7 @@ const Signup = () => {
               {loading && (
                 <p size="sm" role="status" tag="span" className="me-2" />
               )}
-              Login
+              Sign up
             </button>
             <Link
               to="/signin"
