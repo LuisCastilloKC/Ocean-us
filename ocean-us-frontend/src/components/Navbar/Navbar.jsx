@@ -21,7 +21,6 @@ const Navbar = () => {
           aria-controls="navbar-default"
           aria-expanded="false"
         >
-          <span className="sr-only">Open main menu</span>
           <svg
             className="w-6 h-6"
             aria-hidden="true"
@@ -37,7 +36,39 @@ const Navbar = () => {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+          {user?.result?._id &&(
+            <>
+            
+            </>
+          )}
           <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-blue-300 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+              <Link
+                to="/event"
+                className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 dark:text-white "
+                aria-current="page"
+              >
+                Events
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/place"
+                className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 dark:text-white "
+                aria-current="page"
+              >
+                Places
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/topusers"
+                className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 dark:text-white "
+                aria-current="page"
+              >
+                Top Users
+              </Link>
+            </li>
             <li>
               <Link
                 to="/signin"
@@ -45,6 +76,15 @@ const Navbar = () => {
                 aria-current="page"
               >
                 Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 dark:text-white "
+                aria-current="page"
+              >
+                Logout
               </Link>
             </li>
             <li>
